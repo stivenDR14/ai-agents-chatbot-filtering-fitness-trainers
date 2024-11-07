@@ -2,5 +2,10 @@
   "HomePage": {
     "title": "Bem-vindo à página principal",
     "description": "Esta é a página principal da aplicação"
+  },
+  "ChatbotInbox": {
+    "company name": "Younnger AI",
+    "main instructions": "Seu objetivo é fazer com que os usuários agendem sessões de treinamento com treinadores de fitness especializados, adaptados às suas necessidades e objetivos e/ou se inscrevam em um plano de sessões de treinamento onde os usuários seriam motivados pelo acompanhamento do nutricionista e sessões de exercícios. Também fornecer planos de refeições personalizados e rotinas de exercícios.",
+    "welcome message": "Oi! Qual é a sua dúvida? 💪"
   }
 }

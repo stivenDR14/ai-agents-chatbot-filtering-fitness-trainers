@@ -1,9 +1,12 @@
 "use client";
 
+import { getDefaultLocale } from "app/helpers/locale";
 import { Locale } from "app/i18n/config";
 import { setUserLocale } from "app/services/locale";
 import { useLocale, useTranslations } from "next-intl";
-import { useTransition } from "react";
+import { useEffect, useTransition } from "react";
+import { Typography } from "@mui/material";
+import SmartChatbotComponent from "app/components/smart-chatbot.component";
 
 export default function Home() {
   const t = useTranslations("HomePage");
@@ -11,16 +14,21 @@ export default function Home() {
 
   const [isPending, startTransition] = useTransition();
 
+  useEffect(() => {
+    setUserLocale(getDefaultLocale());
+  }, []);
+
   function onChange(value: string) {
-    const locale = value as Locale;
+    const newLocale = value as Locale;
     startTransition(() => {
-      setUserLocale(locale);
+      setUserLocale(newLocale);
     });
   }
 
   return (
     <div>
-      <h1>{t("title")}</h1>
+      <SmartChatbotComponent />
+      <Typography>{t("title")}</Typography>
       <select value={locale} onChange={(e) => onChange(e.target.value)}>
         <option value="en">English</option>
         <option value="es">Spanish</option>

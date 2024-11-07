@@ -2,5 +2,10 @@
   "HomePage": {
     "title": "Welcome to the main page",
     "description": "This is the main page of the application"
+  },
+  "ChatbotInbox": {
+    "company name": "Younnger AI",
+    "main instructions": "Your objective is to get users to schedule training sessions with specialized fitness trainers, tailored to their needs and goals and/or subscribe to a training session plan where users would be motivated by the accompaniment of the nutritionist and exercise sessions. Also provide personalized meal plans and exercise routines.",
+    "welcome message": "Hi!, What is your doubt for?💪"
   }
 }
