@@ -11,6 +11,10 @@ export const filterState: StateGraphArgs<FilterExecuteState>["channels"] = {
     value: (left?: string, right?: string) => right ?? left ?? "",
     default: () => "",
   },
+  language: {
+    value: (left?: string, right?: string) => right ?? left ?? "en",
+    default: () => "en",
+  },
   currentData: {
     value: (x?: object, y?: object) =>
       y ??
@@ -45,8 +49,6 @@ export const filterState: StateGraphArgs<FilterExecuteState>["channels"] = {
 };
 
 const shouldNextToAskHuman = (state: FilterExecuteState) => {
-  console.log("is thinking....", state);
-
   if (
     (state.mistakes && state.mistakes.length > 0) ||
     (state.ommittedData && state.ommittedData.length > 0)

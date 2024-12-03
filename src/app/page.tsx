@@ -27,13 +27,19 @@ export default function Home() {
 
   return (
     <div>
-      <SmartChatbotComponent />
-      <Typography>{t("title")}</Typography>
-      <select value={locale} onChange={(e) => onChange(e.target.value)}>
-        <option value="en">English</option>
-        <option value="es">Spanish</option>
-        <option value="pt">Brazil</option>
-      </select>
+      {isPending ? (
+        "Loading..."
+      ) : (
+        <>
+          <SmartChatbotComponent />
+          <Typography>{t("title")}</Typography>
+          <select value={locale} onChange={(e) => onChange(e.target.value)}>
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="pt">Portuguese</option>
+          </select>
+        </>
+      )}
     </div>
   );
 }

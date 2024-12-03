@@ -114,10 +114,11 @@ export function checkDataStep(
         newData.mode.length > 0
           ? newData.mode
           : (state.currentData as any).mode,
-      sessionAmount:
-        newData.sessionAmount.length > 0
+      sessionAmount: newData.sessionAmount
+        ? newData.sessionAmount.length > 0
           ? newData.sessionAmount
-          : (state.currentData as any).sessionAmount,
+          : (state.currentData as any).sessionAmount
+        : undefined,
     };
 
     let mistakes: string[] = [];

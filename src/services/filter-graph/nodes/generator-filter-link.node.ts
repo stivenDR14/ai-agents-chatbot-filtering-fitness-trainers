@@ -53,10 +53,11 @@ export async function generatorFilterLinkStep(
           .replaceAll("}", `>`)}
       `
   }
+      *Remember:\
+      - Deliver the link in a different paragraph.\
+      - The link must be send like a normal text.\
 
   `;
-
-  console.log("generatorFilterLinkStep");
 
   try {
     const solverPrompt = ChatPromptTemplate.fromTemplate(promptText).pipe(

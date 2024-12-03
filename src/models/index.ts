@@ -12,6 +12,7 @@ export interface FilterExecuteState {
   validatedData?: object;
   output: string;
   mistakes?: string[];
+  language: string;
 }
 
 export interface SuggestionsExecuteState {
@@ -19,4 +20,10 @@ export interface SuggestionsExecuteState {
   output: string;
   recommendedObject?: IRecommendationObject;
   redirection?: string;
+}
+
+export interface MainExecuteState extends FilterExecuteState {
+  recommendedObject?: IRecommendationObject;
+  doubts: string[];
+  containDoubtsRelatedWithSuggestions: boolean;
 }

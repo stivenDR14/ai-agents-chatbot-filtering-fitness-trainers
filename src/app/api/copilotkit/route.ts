@@ -7,10 +7,13 @@ import {
 } from "@copilotkit/runtime";
 import { modelLargeMistral } from "app/services/ai-models";
 import { StructuredToolInterface } from "@langchain/core/tools";
-import { callToActionQuestion, younngerTarget } from "app/utils/database";
-import { FilterExecuteState } from "app/models";
+import { younngerTarget } from "app/utils/database";
+import { FilterExecuteState, MainExecuteState } from "app/models";
 import GraphFilterAgentSingleton from "app/services/filter-graph";
 import { getUserLocale } from "app/services/locale";
+import { GenericLanguages } from "app/utils/constants";
+
+let mainState: MainExecuteState;
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -18,6 +21,7 @@ export const POST = async (req: NextRequest) => {
     const extractDataForFilter: Action<any> = {
       name: "extractDataForFilter",
       description: `Call this function when the user is providing data or listing some items with the objective of: ${younngerTarget}.
+      Each time that user is asking for something related with training sessions, like giving a location, speciality, time of the day, mode of training (In-person or virtual) or amount of sessions
         some examples of this function are:
         - I want some training sessions between 4 and 6 pm on Monday and with boxing and running as specialities of the trainer.
         - Show me all the trainers that are in Chapinero and that have a speciality in Zumba.
@@ -27,7 +31,7 @@ export const POST = async (req: NextRequest) => {
         - I wish a nutritionist that can help me with my diet.
         - I need training sessions 2 times a week and that includes a nutritionist.
         - Boxing and running sessions on weekends.
-        - presencial way of training.
+        - In-person way of training.
         - 4 sessions per week.
         - Between 6 and 8 pm.
       `,
@@ -35,17 +39,12 @@ export const POST = async (req: NextRequest) => {
         {
           name: "input",
           type: "string",
-          description:
-            "the input that the user is sending to the app, it can be empty or not",
+          description: "the input that the user is sending to the app",
         },
       ],
       handler: async ({ input }) => {
         const language = await getUserLocale();
-        console.log("extractDataForFilter input", input, language);
         const graphFilterAgent = GraphFilterAgentSingleton.getInstance();
-        // Input
-
-        // Thread
         const config = {
           configurable: { thread_id: "1" },
           streamMode: "values" as const,
@@ -53,8 +52,13 @@ export const POST = async (req: NextRequest) => {
 
         const currentState = await graphFilterAgent.getState(config);
 
+        mainState = {
+          ...currentState.values,
+        };
+
         const initialInput = {
           input: input,
+          language: GenericLanguages[language as keyof typeof GenericLanguages],
           currentData: {
             locations: [],
             specialities: [],
@@ -111,25 +115,24 @@ export const POST = async (req: NextRequest) => {
     };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const recommendAndRedirect: Action<any> = {
-      name: "recommendAndRedirect",
-      description: `Call this function when the user is asking for suggestions or ${callToActionQuestion}`,
+    const otherStuff: Action<any> = {
+      name: "otherStuff",
+      description: `Call this function when the user is asking for fitness suggestions, if has a doubt about how the platform works or is asking for the different possibilities that are available in the app for locations, specialities, time of the day, etc.`,
       parameters: [
         {
           name: "input",
           type: "string",
-          description:
-            "the input that the user is sending to the app, it can be empty or not",
+          description: "the input that the user is sending to the app",
         },
       ],
       handler: async ({ input }) => {
-        console.log("input recommendAndRedirect", input);
+        console.log("input other stuff", input, mainState);
 
-        return "you are in the graph of seggestions and redirections";
+        return "you are in the graph of otherStuff";
       },
     };
 
-    const actions: Action[] = [extractDataForFilter, recommendAndRedirect];
+    const actions: Action[] = [extractDataForFilter, otherStuff];
 
     const serviceAdapter = new LangChainAdapter({
       chainFn: async ({ messages, tools }) => {
@@ -141,7 +144,7 @@ export const POST = async (req: NextRequest) => {
           tools: tools as StructuredToolInterface[],
         });
 
-        console.log("final", final.toDict());
+        console.log("tools used", final.tool_calls);
 
         return final;
       },

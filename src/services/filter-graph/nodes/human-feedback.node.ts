@@ -40,8 +40,7 @@ export async function humanFeedbackStep(
     Object.values(state.validatedData).length !== 0 &&
     state.mistakes &&
     state.mistakes.length === 0
-      ? `- In case that the proccess has all the required data, don't ask for anything more, just remeber the user that can reject some items in the data container if the user wants and send to the proccess another request with different data.    
-      Now the user might be redirected to the page where ${organizationName} is going to: ${younngerTarget}. 
+      ? `- Now the user might be redirected to the page where ${organizationName} is going to: ${younngerTarget}. 
     Then the user could click on the next link for achieve the objective of "{process}" as well: ${linkForProcess}${Object.entries(
           state.validatedData
         )
@@ -65,7 +64,7 @@ export async function humanFeedbackStep(
         `-Is mandatory to tell the user about the mistakes that he has made with a closest similar description: ${state.mistakes.join(
           " - "
         )}.\
-    Then try to hook him up to the process, and if the user hasn't provided the neccessary data to the proccess, ask him for the missing data and/or if the user want another items for setting in the process. In the case of the user has exceeded the limit of one item, tell him that he can reject items in the data container of the interface, and remmeber that the proccess is not allowed to adjust anything that user asks.\
+    Then try to hook him up to the process, and if the user hasn't provided the neccessary data to the proccess, ask him for the missing data and/or if the user want another items for setting in the process. In the case of the user has exceeded the limit of one item, remmeber that the proccess is not allowed to adjust anything that user asks.\
     `
       : ""
   }\
@@ -89,31 +88,18 @@ export async function humanFeedbackStep(
       : " was extracted before by the process"
   }`}
 
-  ${
-    state.validatedData &&
-    Object.values(state.validatedData).length !== 0 &&
-    state.mistakes &&
-    state.mistakes.length === 0
-      ? `This is the link where that you must provide to user in order for getting the data that user is looking for based on ${younngerProcess}: ${linkForProcess}${Object.entries(
-          state.validatedData
-        )
-          .map(([key, values]) => `${key}=${JSON.stringify(values)}`)
-          .join("&")}\ 
-`
-      : ""
-  }
-
   *Remember:\
   -Don't question user preferences as long as they are not related to mistakes descrived before.\
   -Don't tell or ask to the user about limitations on the data or items that he had provided.\
   -Do not give opinions about the user's data or items.\
+  -Do not answer a large response, it could be not more than 5 sentences.\
+  -Answer in the language: ${state.language}.\
   -Don't answer him at the end with question like 'seem to you?' or 'do you want to continue?' or 'do you want to know more?', the proccess doesn't have memory of the previous messages.\
-  -Do not answer the user with something like 'Could you confirm if you want to change any of the items or data provided?' because the agents of the procces are not allowed to change that, the user must do it in the data container of the interface.\
+  -Do not answer the user with something like 'Could you confirm if you want to change any of the items or data provided?' because the agents of the procces are not allowed to change that.\
   -If there is any mistake in the data provided by the user, end the conversation saying that for continue is neccessary the respective suggestions that you did.\
  
   `;
 
-  console.log("humanFeedbackStep");
   try {
     const solverPrompt = ChatPromptTemplate.fromTemplate(promptText).pipe(
       modelLargeMistral(0.3)

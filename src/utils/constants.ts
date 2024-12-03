@@ -3,3 +3,9 @@ export const GenericConstants = {
   mainInstruction: "main instructions",
   welcomeMessage: "welcome message",
 };
+
+export const GenericLanguages = {
+  en: "english",
+  pt: "portuguese",
+  es: "spanish",
+};

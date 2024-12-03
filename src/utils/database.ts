@@ -22,6 +22,8 @@ export const schemeData = {
   sessionAmount: "string[]",
 };
 
+export const recommendedKey = Object.keys(schemeData)[1];
+
 export const keyToReturnByItem = {
   [Object.keys(schemeData)[0]]: "id",
   [Object.keys(schemeData)[1]]: "id",
@@ -388,5 +390,9 @@ export const validations = {
 };
 
 export const organizationName = "Younnger";
+export const processInformation = `a conversational form chatbot that collects data, analyzes it, and provides links with sorted params or information. The information is managed by the process and configured by '${organizationName}' and this data won't share with third parties. for more information about the organization, you can ask for it. Even if you want to know about specific page in the organization ask for it. ask him questions like: ${callToActionQuestion}, with the objective of ${younngerTarget}`;
+export const organizationInformation = `Youngger is the name of the company, which defines itself as a web platform that connects trainers specialized in certain areas of fitness with people who seek to improve their health and well-being. At the moment it is only available in the city of Bogotá but will soon be able to cover other cities in Colombia.
+It has plans of 4, 8, 12, 16 and 20 monthly sessions with up to two different specialties. The trainers are selected for their experience and knowledge in the area, and they adapt to the needs and objectives of each user. In addition, each subscription includes a personalized nutrition plan and follow-up to that same nutritional plan.
+`;
 
 export const linkForProcess = `https://app.younnger.com/filter-trainers?`;
