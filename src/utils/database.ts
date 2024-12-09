@@ -304,6 +304,14 @@ export const dataForExtraction = {
   },
 };
 
+export const objectiveOrRecommendation = `a health or fitness goal (This could be getting trainers or specialties for any of these items: ${utils.FITNESS_OBJECTIVES.map(
+  (values) => {
+    return values.name;
+  }
+).join(
+  ", "
+)}). You may also be describing a goal regarding your health or well-being where there is the possibility of providing some type of recommendation.`;
+
 const optionsParameter = "Las opciones para el parametro de";
 
 const optionsSelected = "Las opciones que seleccionaste para el parametro de";

@@ -15,15 +15,19 @@ export interface FilterExecuteState {
   language: string;
 }
 
-export interface SuggestionsExecuteState {
-  input: string;
-  output: string;
-  recommendedObject?: IRecommendationObject;
-  redirection?: string;
+export interface IAnalizedData {
+  containDoubtsRelatedWithSuggestions: boolean;
+  doubts: string[];
 }
 
-export interface MainExecuteState extends FilterExecuteState {
+export interface SuggestionsExecuteState {
+  input: string;
+  language: string;
+  output: string;
+  analizedData: IAnalizedData;
   recommendedObject?: IRecommendationObject;
-  doubts: string[];
-  containDoubtsRelatedWithSuggestions: boolean;
 }
+
+export interface MainExecuteState
+  extends FilterExecuteState,
+    SuggestionsExecuteState {}

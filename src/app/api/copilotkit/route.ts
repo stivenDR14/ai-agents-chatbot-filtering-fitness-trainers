@@ -12,6 +12,7 @@ import { FilterExecuteState, MainExecuteState } from "app/models";
 import GraphFilterAgentSingleton from "app/services/filter-graph";
 import { getUserLocale } from "app/services/locale";
 import { GenericLanguages } from "app/utils/constants";
+import GraphSuggestionDoubtsAgentSingleton from "app/services/doubt-graph";
 
 let mainState: MainExecuteState;
 
@@ -43,6 +44,8 @@ export const POST = async (req: NextRequest) => {
         },
       ],
       handler: async ({ input }) => {
+        console.log("extractDataForFilter", input);
+
         const language = await getUserLocale();
         const graphFilterAgent = GraphFilterAgentSingleton.getInstance();
         const config = {
@@ -67,8 +70,6 @@ export const POST = async (req: NextRequest) => {
             sessionAmount: [],
           },
         };
-
-        console.log("pre currentState", currentState);
 
         if (currentState.next[0] === "") {
           await graphFilterAgent.updateState(config, {
@@ -110,6 +111,12 @@ export const POST = async (req: NextRequest) => {
           snapshot = event as FilterExecuteState;
         }
 
+        mainState = {
+          ...mainState,
+          ...snapshot,
+        };
+
+        console.log("post currentState", mainState);
         return (snapshot as FilterExecuteState).output;
       },
     };
@@ -117,7 +124,17 @@ export const POST = async (req: NextRequest) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const otherStuff: Action<any> = {
       name: "otherStuff",
-      description: `Call this function when the user is asking for fitness suggestions, if has a doubt about how the platform works or is asking for the different possibilities that are available in the app for locations, specialities, time of the day, etc.`,
+      description: `Call this function when the user is asking for fitness suggestions, if has a doubt about how the platform works or is asking for the different possibilities that are available in the app for locations, specialities, time of the day, etc.
+      some examples of this function are:
+      - Tell me what are the different locations that you have available.
+      - What location can I choose?
+      - What are the different specialities that you have?
+      - What specialities can I filter?
+      - What specialities are there?
+      - What are the different times of the day that I can choose?
+      - What are the time of the day options?
+      - Tell me the data that you have saved from me
+      `,
       parameters: [
         {
           name: "input",
@@ -126,9 +143,36 @@ export const POST = async (req: NextRequest) => {
         },
       ],
       handler: async ({ input }) => {
-        console.log("input other stuff", input, mainState);
+        console.log("otherStuff", input);
 
-        return "you are in the graph of otherStuff";
+        const language = await getUserLocale();
+        const graphSuggestDoubtAgent =
+          GraphSuggestionDoubtsAgentSingleton.getInstance();
+        const config = {
+          configurable: { thread_id: "1" },
+          streamMode: "values" as const,
+        };
+        mainState = {
+          ...mainState,
+          input: input,
+          language: GenericLanguages[language as keyof typeof GenericLanguages],
+        };
+
+        let snapshot = {};
+        // Run the graph until the first interruption
+        for await (const event of await graphSuggestDoubtAgent.stream(
+          mainState,
+          config
+        )) {
+          snapshot = event as MainExecuteState;
+        }
+
+        mainState = {
+          ...mainState,
+          ...snapshot,
+        };
+
+        return (snapshot as MainExecuteState).output;
       },
     };
 
@@ -144,7 +188,7 @@ export const POST = async (req: NextRequest) => {
           tools: tools as StructuredToolInterface[],
         });
 
-        console.log("tools used", final.tool_calls);
+        console.log("tools used", final.tool_calls, mainState);
 
         return final;
       },

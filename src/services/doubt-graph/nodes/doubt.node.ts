@@ -14,15 +14,6 @@ import {
   younngerTarget,
 } from "app/utils/database";
 
-const doubtsOptions: [string, ...string[]] = [
-  "DoubtAboutField",
-  "DoubtAboutProcess",
-  "DoubtAboutStorageData",
-  "DoubtAboutOrganization",
-  "DoubtAboutTopicForCallToAction",
-  "DoubtAboutAnotherTopic",
-];
-
 const doubtsDescription = (
   state: MainExecuteState
 ): { [key: string]: string } => {
@@ -66,6 +57,8 @@ const doubtsDescription = (
 export async function doubtStep(
   state: MainExecuteState
 ): Promise<Partial<MainExecuteState>> {
+  console.log("pre solverPrompt", state);
+
   const doubtsObjectDescription = doubtsDescription(state);
 
   const promptText = `You are going to respond the user message directly.\
@@ -80,10 +73,10 @@ export async function doubtStep(
 
   There are some notations that you must take into account in order to answer the user message:\
   ${
-    state.doubts.length !== 0
+    state.analizedData.doubts.length !== 0
       ? `
   - Answer each one of the next doubts based on its description and the user message: \
-  ${state.doubts
+  ${state.analizedData.doubts
     .map((doubt) => {
       return `${doubt}: ${doubtsObjectDescription[doubt]} \
     `;
@@ -100,7 +93,7 @@ export async function doubtStep(
 
 
   ${
-    state.containDoubtsRelatedWithSuggestions &&
+    state.analizedData.containDoubtsRelatedWithSuggestions &&
     state.recommendedObject &&
     state.recommendedObject.name !== ""
       ? `-You took some suggesions for him based on the topic of ${
