@@ -57,8 +57,6 @@ const doubtsDescription = (
 export async function doubtStep(
   state: MainExecuteState
 ): Promise<Partial<MainExecuteState>> {
-  console.log("pre solverPrompt", state);
-
   const doubtsObjectDescription = doubtsDescription(state);
 
   const promptText = `You are going to respond the user message directly.\
@@ -124,8 +122,6 @@ export async function doubtStep(
     const solverPrompt = ChatPromptTemplate.fromTemplate(promptText).pipe(
       modelLargeMistral(0.3)
     );
-
-    console.log("solverPrompt", promptText);
 
     const output = await solverPrompt.invoke({
       message: state.input,

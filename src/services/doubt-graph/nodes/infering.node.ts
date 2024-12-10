@@ -73,7 +73,6 @@ export async function inferingStep(
     topicRelatedForCallToAction: topicRelatedForCallToAction,
     goalOrSuggestion: objectiveOrRecommendation,
   });
-  console.log("inferingStep", output);
   //console the tokens used in the output
 
   return { ...state, analizedData: output };

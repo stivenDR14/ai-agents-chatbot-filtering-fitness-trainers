@@ -44,8 +44,6 @@ export const POST = async (req: NextRequest) => {
         },
       ],
       handler: async ({ input }) => {
-        console.log("extractDataForFilter", input);
-
         const language = await getUserLocale();
         const graphFilterAgent = GraphFilterAgentSingleton.getInstance();
         const config = {
@@ -98,8 +96,6 @@ export const POST = async (req: NextRequest) => {
             omittedData: undefined,
           });
 
-        console.log("post currentState", currentState);
-
         let snapshot = {};
         // Run the graph until the first interruption
         for await (const event of await graphFilterAgent.stream(
@@ -116,7 +112,6 @@ export const POST = async (req: NextRequest) => {
           ...snapshot,
         };
 
-        console.log("post currentState", mainState);
         return (snapshot as FilterExecuteState).output;
       },
     };
@@ -143,8 +138,6 @@ export const POST = async (req: NextRequest) => {
         },
       ],
       handler: async ({ input }) => {
-        console.log("otherStuff", input);
-
         const language = await getUserLocale();
         const graphSuggestDoubtAgent =
           GraphSuggestionDoubtsAgentSingleton.getInstance();
@@ -187,8 +180,6 @@ export const POST = async (req: NextRequest) => {
         const final = await modelWithTool.invoke(messages, {
           tools: tools as StructuredToolInterface[],
         });
-
-        console.log("tools used", final.tool_calls, mainState);
 
         return final;
       },
