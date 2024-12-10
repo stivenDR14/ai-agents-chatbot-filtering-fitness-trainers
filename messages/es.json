@@ -1,10 +1,12 @@
 {
-  "HomePage": {
-    "title": "Bienvenido a la página principal",
-    "description": "Esta es la página principal de la aplicación"
-  },
   "ChatbotInbox": {
-    "company name": "Younnger AI [es]",
+    "company name": "Asistente de IA de Younnger",
+    "language": {
+      "portuguese": "Portugués",
+      "spanish": "Español",
+      "english": "Inglés"
+    },
+    "select language": "Elige el idioma para el Asistente",
     "main instructions": "Tu objetivo es conseguir que los usuarios programen sesiones de entrenamiento con entrenadores de fitness especializados, adaptados a sus necesidades y objetivos y/o se suscriban a un plan de sesiones de entrenamiento donde los usuarios serían motivados por el acompañamiento del nutricionista y las sesiones de ejercicio. También proporcionar planes de comidas personalizados y rutinas de ejercicio. Responde al usuario solamente en español",
     "welcome message": "¡Hola! Dime, ¿En qué especialidades de fitness estás interesado o tienes dudas sobre cómo filtrar tus entrenadores? 💪 \n\n\n **Nota importante: Puedo brindarte consejos generales sobre actividad física y nutrición, pero ten en cuenta que mis respuestas se basan en información recopilada de diversas fuentes y pueden no ser tan precisas como las de un profesional. Por favor, consulta con un experto en salud antes de realizar cambios significativos en tu dieta o rutina de ejercicios. En cuanto a los datos que me proporcionas no se almacenarán ni se utilizarán para entrenar modelos de inteligencia artificial. Este es un proyecto experimental diseñado para ayudarte a explorar entrenadores bajo los intereses que me presentes y esten inscritos en la plataforma de Younnger. En cualquier caso de recomendación de habitos saludables que te brinde, no sustituyo en lo absoluto el asesoramiento de un especialista o profesional en el campo.**"
   }

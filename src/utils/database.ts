@@ -312,15 +312,15 @@ export const objectiveOrRecommendation = `a health or fitness goal (This could b
   ", "
 )}). You may also be describing a goal regarding your health or well-being where there is the possibility of providing some type of recommendation.`;
 
-const optionsParameter = "Las opciones para el parametro de";
+const optionsParameter = "The options for the parameter of";
 
-const optionsSelected = "Las opciones que seleccionaste para el parametro de";
+const optionsSelected = "The options you selected for the parameter of";
 
 const greaterThanAllowed =
-  "son mayores que la cantidad permitida de items, es decir a lo mucho";
+  "are greater than the allowed number of items, it means at most";
 
 const lessThanAllowed =
-  "son menores que la cantidad necesaria de items, es decir al menos";
+  "are less than the required number of items, it means at least";
 
 export const fieldLabels = {
   [Object.keys(schemeData)[0]]: "Zonas por localidades de Bogotá",
