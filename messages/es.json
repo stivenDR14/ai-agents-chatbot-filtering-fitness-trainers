@@ -9,5 +9,14 @@
     "select language": "Elige el idioma para el Asistente",
     "main instructions": "Tu objetivo es conseguir que los usuarios programen sesiones de entrenamiento con entrenadores de fitness especializados, adaptados a sus necesidades y objetivos y/o se suscriban a un plan de sesiones de entrenamiento donde los usuarios serían motivados por el acompañamiento del nutricionista y las sesiones de ejercicio. También proporcionar planes de comidas personalizados y rutinas de ejercicio. Responde al usuario solamente en español",
     "welcome message": "¡Hola! Dime, ¿En qué especialidades de fitness estás interesado o tienes dudas sobre cómo filtrar tus entrenadores? 💪 \n\n\n **Nota importante: Puedo brindarte consejos generales sobre actividad física y nutrición, pero ten en cuenta que mis respuestas se basan en información recopilada de diversas fuentes y pueden no ser tan precisas como las de un profesional. Por favor, consulta con un experto en salud antes de realizar cambios significativos en tu dieta o rutina de ejercicios. En cuanto a los datos que me proporcionas no se almacenarán ni se utilizarán para entrenar modelos de inteligencia artificial. Este es un proyecto experimental diseñado para ayudarte a explorar entrenadores bajo los intereses que me presentes y esten inscritos en la plataforma de Younnger. En cualquier caso de recomendación de habitos saludables que te brinde, no sustituyo en lo absoluto el asesoramiento de un especialista o profesional en el campo.**"
+  },
+  "Landing": {
+    "title": "¡No dudes en probar el Asistente de IA de Younnger!",
+    "subtitle": "¿Tienes algún cuestionario aburrido? 🤔. Dale vida con este asistente AI para recolectar datos: Si estas interesado en integrar un formulario inteligente en tu sitio web, ¡contáctame! 🚀",
+    "schedule": "¡Solicita tu propia integración!",
+    "contact": "Contacto en LinkedIn",
+    "see demo": "Ver demostración aplicada a un sitio web",
+    "see code": "Ver código fuente",
+    "bonus": "* Bonus: intenta cambiar el idioma de esta pagina web a portugués o inglés escribiendoselo al asistente de IA de Younnger *"
   }
 }
