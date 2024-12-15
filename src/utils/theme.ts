@@ -86,3 +86,41 @@ export const customThemeYounnger = createTheme({
   },
   ...typografyTheme,
 });
+
+export const customThemeGeneral = createTheme({
+  palette: {
+    mode: "light",
+    primary: {
+      main: "#272727",
+      contrastText: "#d4aa7d",
+    },
+    secondary: {
+      main: "#90a9b7",
+    },
+    background: {
+      default: "#d2d8b3",
+      paper: "#efd09e",
+    },
+    text: {
+      primary: "#141414",
+      secondary: "#383838",
+    },
+    error: {
+      main: "#EBA6A9",
+    },
+    warning: {
+      main: "#FFC6AC",
+    },
+    info: {
+      main: "#C4A29E",
+    },
+    success: {
+      main: "#5A7D7C",
+    },
+    common: {
+      black: "#141414",
+      white: "#EDEDED",
+    },
+  },
+  ...typografyTheme,
+});
