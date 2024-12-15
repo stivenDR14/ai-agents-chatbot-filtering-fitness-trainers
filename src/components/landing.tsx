@@ -113,7 +113,7 @@ const Landing: React.FC = () => {
           color="primary"
           startIcon={<Try />}
           style={{ margin: "10px" }}
-          href="https://github.com/stivenDR14/ai-agents-chatbot-filtering-fitness-trainers"
+          href="https://app.younnger.com/filter-trainers"
           target="_blank"
         >
           {t("see demo")}
@@ -130,7 +130,7 @@ const Landing: React.FC = () => {
           color="primary"
           startIcon={<Code />}
           style={{ margin: "10px" }}
-          href="https://app.younnger.com/filter-trainers"
+          href="https://github.com/stivenDR14/ai-agents-chatbot-filtering-fitness-trainers"
           target="_blank"
         >
           {t("see code")}
