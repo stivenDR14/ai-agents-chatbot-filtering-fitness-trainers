@@ -37,8 +37,18 @@ export default function SmartChatbotComponent() {
 
   function onChange(value: string) {
     const newLocale = value as Locale;
-    startTransition(() => {
-      setUserLocale(newLocale);
+    startTransition(async () => {
+      const delayLanguage = await updateLanguage(newLocale);
+      setUserLocale(delayLanguage);
+    });
+  }
+
+  async function updateLanguage(language: Locale): Promise<Locale> {
+    return new Promise((resolve) => {
+      // Simulate a medium network request.
+      setTimeout(() => {
+        resolve(language);
+      }, 700);
     });
   }
 
@@ -71,7 +81,16 @@ export default function SmartChatbotComponent() {
       clickOutsideToClose={false}
       Header={() =>
         isLoading ? (
-          <CircularProgress />
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              margin: "8px 0",
+            }}
+          >
+            <CircularProgress color="error" />
+          </Box>
         ) : (
           <Box>
             <Grid
