@@ -130,7 +130,7 @@ const Landing: React.FC = () => {
           color="primary"
           startIcon={<Code />}
           style={{ margin: "10px" }}
-          href="https://app.younnger.com"
+          href="https://app.younnger.com/filter-trainers"
           target="_blank"
         >
           {t("see code")}

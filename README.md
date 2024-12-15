@@ -1,4 +1,4 @@
-# Fitness Filter Chatbot AI
+# Fitness Filter Chatbot AI 🏋️‍♂️
 
 This repository contains a Next.js application, where it has the CoplitKit package utilized to make a chatbot with human-in-loop features.
 The human-in-loop feature is implemented by calling the respective endpoint of two LangGraph agents. Those ones implements a graph agent using a Singleton pattern to maintain state across API calls.
@@ -33,8 +33,8 @@ To install and run this project locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/stivenDR14/ai-agents-chatbot-filtering-fitness-trainers.git
+   cd ai-agents-chatbot-filtering-fitness-trainers
    ```
 
 2. Install the dependencies:
@@ -46,6 +46,13 @@ To install and run this project locally, follow these steps:
 3. Set up environment variables:
 
 Create a .env file in the root of your project and add any necessary environment variables. In this repository you have the .env.example file for guidance.
+
+For this project, you need to set the following environment variables:
+MISTRAL_LARGE_ENDPOINT
+MISTRAL_LARGE_KEY
+
+You can use other LLM's, nevertheless, you need to change the service that calls the LLM's in the services folder `src/services/ai-models`.
+Whether you want to use the same LLM's, you can ask for the endpoint and key creating the respective ones in Mistral AI platform or even in [Azure AI Foundry](https://ai.azure.com/). I got those ones from Azure AI, specifically the model Mistral-large-2407 with $0.002 per input and $0.006 per output, every 1000 tokens. It works very well by its strong multi-lingual support.
 
 ## Usage
 
@@ -89,7 +96,3 @@ The project structure is as follows:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-```
-
-```
