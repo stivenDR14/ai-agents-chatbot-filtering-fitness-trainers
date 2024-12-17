@@ -21,20 +21,29 @@ export const POST = async (req: NextRequest) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const extractDataForFilter: Action<any> = {
       name: "extractDataForFilter",
-      description: `Call this function when the user is providing data or listing some items with the objective of: ${younngerTarget}.
+      description: `Call this function when the user is providing data or listing some items, could be with the objective of: ${younngerTarget}. Even if the user is just providing some data that you can extract from the user's input, call this function.
       Each time that user is asking for something related with training sessions, like giving a location, speciality, time of the day, mode of training (In-person or virtual) or amount of sessions
         some examples of this function are:
         - I want some training sessions between 4 and 6 pm on Monday and with boxing and running as specialities of the trainer.
+        - I want to schedule a training session and get for me with the data that you have saved.
+        - I'd prefer to have presencial training sessions.
+        - well, let's filter by Zumba and Running.
         - Show me all the trainers that are in Chapinero and that have a speciality in Zumba.
         - Let's search trainers that that can help me with my weight loss.
         - I want to see the trainers that are available on weekends.
         - Sessions all the days at 8am, in functional training and with a nutritionist.
         - I wish a nutritionist that can help me with my diet.
         - I need training sessions 2 times a week and that includes a nutritionist.
-        - Boxing and running sessions on weekends.
+        - Zumba and Functional traning sessions on weekends.
         - In-person way of training.
         - 4 sessions per week.
         - Between 6 and 8 pm.
+        - boxing and running
+        - presencial only
+        - 4 sessions per week
+        - between 6 and 8 pm
+        - I need a nutritionist
+        - I want to see the trainers that are available on weekends
       `,
       parameters: [
         {
@@ -124,6 +133,10 @@ export const POST = async (req: NextRequest) => {
       - Tell me what are the different locations that you have available.
       - What location can I choose?
       - What are the different specialities that you have?
+      - about the specialities, what are the options?
+      - What are the different modes of training that I can choose?
+      - talking about ubications, what are the possibilities?
+      - may I choose the specialities taking into account what types of them?
       - What specialities can I filter?
       - What specialities are there?
       - What are the different times of the day that I can choose?

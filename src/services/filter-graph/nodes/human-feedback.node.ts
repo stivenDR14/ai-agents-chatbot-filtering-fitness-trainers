@@ -12,7 +12,7 @@ import {
 export async function humanFeedbackStep(
   state: FilterExecuteState
 ): Promise<Partial<FilterExecuteState>> {
-  const promptText = `You are an agent that is going to answer for communicating to a supervisor hothe supervisor needs to answer the user message.\
+  const promptText = `You are an agent that is going to answer the user message.\
   You have this user message:\
   {message}\
 
@@ -93,7 +93,6 @@ export async function humanFeedbackStep(
   -Don't tell or ask to the user about limitations on the data or items that he had provided.\
   -Do not give opinions about the user's data or items.\
   -Do not answer a large response, it could be not more than 5 sentences.\
-  -Answer in the language: ${state.language}.\
   -Don't answer him at the end with question like 'seem to you?' or 'do you want to continue?' or 'do you want to know more?', the proccess doesn't have memory of the previous messages.\
   -Do not answer the user with something like 'Could you confirm if you want to change any of the items or data provided?' because the agents of the procces are not allowed to change that.\
   -If there is any mistake in the data provided by the user, end the conversation saying that for continue is neccessary the respective suggestions that you did.\

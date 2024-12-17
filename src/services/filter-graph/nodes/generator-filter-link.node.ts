@@ -32,7 +32,9 @@ export async function generatorFilterLinkStep(
           state.validatedData
         )
           .map(([key, values]) => `${key}=${JSON.stringify(values)}`)
-          .join("&")}\ 
+          .join("&")
+          .replaceAll("[", "")
+          .replaceAll("]", "")}\ 
 `
       : `It was not possible to return a link to the user, please check the necessary data to continue.
       From the next schema, tell user the field that the user is asking about, if is in general, tell him about all the fields and options: ${JSON.stringify(
