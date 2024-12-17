@@ -16,6 +16,8 @@ import GraphSuggestionDoubtsAgentSingleton from "app/services/doubt-graph";
 
 let mainState: MainExecuteState;
 
+export const maxDuration = 25;
+
 export const POST = async (req: NextRequest) => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
